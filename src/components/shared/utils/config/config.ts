@@ -244,7 +244,7 @@ export const generateOAuthURL = async (prompt?: string) => {
             // Build redirect URL
             const protocol = window.location.protocol;
             const host = window.location.host;
-            const redirectUrl = `${protocol}//${host}`;
+            const redirectUrl = `${protocol}//${host}/callback`;
             const scopes = 'trade';
 
             // Build OAuth URL with PKCE parameters
@@ -273,4 +273,5 @@ export const generateOAuthURL = async (prompt?: string) => {
     // Fallback to hardcoded URLs if brand config fails
     return ``;
 };
+
 
