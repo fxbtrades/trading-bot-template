@@ -1,11 +1,11 @@
 {
-    "brand_name": "YourBrand",
-    "brand_domain": "yourbrand.com",
+    "brand_name": "FXBTrades",
+    "brand_domain": "fxbtrades.com",
     "brand_hostname": {
-        "staging": "staging.yourbrand.com/dashboard",
-        "production": "yourbrand.com/dashboard"
+        "staging": "staging.fxbtrades.com/dashboard",
+        "production": "fxbtrades.com/dashboard"
     },
-    "domain_name": "YourBrand.com",
+    "domain_name": "fxbtrades.com",
     "colors": {
         "primary": "#3b82f6",
         "secondary": "#64748b",
@@ -73,10 +73,10 @@
         },
         "hostname": {
             "production": {
-                "com": "bot.yourbrand.com"
+                "com": "fxbtrades.com"
             },
             "staging": {
-                "com": "staging-bot.yourbrand.com"
+                "com": "staging.fxbtrades.com"
             }
         },
         "auth2_url": {
@@ -95,3 +95,4 @@
         }
     }
 }
+

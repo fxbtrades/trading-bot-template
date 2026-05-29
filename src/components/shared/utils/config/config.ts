@@ -30,7 +30,7 @@ export const WS_SERVERS = {
 export const isProduction = () => {
     const hostname = window.location.hostname;
     const productionDomains = Object.values(PRODUCTION_DOMAINS) as string[];
-    return productionDomains.includes(hostname);
+    return productionDomains.includes(hostname) || /localhost(:\d+)?$/i.test(hostname);
 };
 
 export const isLocal = () => /localhost(:\d+)?$/i.test(window.location.hostname);
@@ -273,3 +273,4 @@ export const generateOAuthURL = async (prompt?: string) => {
     // Fallback to hardcoded URLs if brand config fails
     return ``;
 };
+
