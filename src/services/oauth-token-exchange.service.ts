@@ -99,15 +99,6 @@ export class OAuthTokenExchangeService {
      *
      * @param code - The authorization code from OAuth callback
      * @returns Promise with token exchange response
-     *
-     * @example
-     * ```typescript
-     * const result = await OAuthTokenExchangeService.exchangeCodeForToken('ory_ac_...');
-     * if (result.access_token) {
-     *   // Store token in session storage
-     *   sessionStorage.setItem('access_token', result.access_token);
-     * }
-     * ```
      */
     static async exchangeCodeForToken(code: string): Promise<TokenExchangeResponse> {
         try {
@@ -125,13 +116,6 @@ export class OAuthTokenExchangeService {
                         'PKCE code verifier not found or expired. Please restart the authentication flow.',
                 };
             }
-            // Prepare the request body
-            // OAuth2 token exchange with PKCE requires:
-            // - grant_type: 'authorization_code'
-            // - code: the authorization code
-            // - redirect_uri: must match the one used in authorization request
-            // - client_id: your OAuth2 client ID
-            // - code_verifier: the PKCE code verifier (proves we initiated the auth flow)
 
             const clientId = process.env.CLIENT_ID;
             if (!clientId) {
@@ -142,9 +126,10 @@ export class OAuthTokenExchangeService {
                 };
             }
 
+            // redirect_uri must match exactly what was used in the authorize request
             const protocol = window.location.protocol;
             const host = window.location.host;
-            const redirectUrl = `${protocol}//${host}`;
+            const redirectUrl = `${protocol}//${host}/callback`;
 
             const requestBody = new URLSearchParams({
                 grant_type: 'authorization_code',
@@ -240,9 +225,7 @@ export class OAuthTokenExchangeService {
                 } catch (error) {
                     ErrorLogger.error('OAuth', 'Error fetching accounts after token exchange', error);
                     // Clear stored auth info to prevent user from being stuck in invalid auth state
-                    // This allows retry without manual sessionStorage clearing
                     this.clearAuthInfo();
-                    // Return error status to caller for UI feedback
                     return {
                         error: 'account_fetch_failed',
                         error_description:
