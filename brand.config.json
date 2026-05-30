@@ -88,6 +88,10 @@
                 "staging": "https://staging-api.derivws.com/trading/v1/",
                 "production": "https://api.derivws.com/trading/v1/"
             },
+            "ws_url": {
+                "staging": "wss://staging-api.derivws.com/trading/v1/",
+                "production": "wss://api.derivws.com/trading/v1/"
+            },
             "directories": {
                 "options": "options/",
                 "derivatives": "derivatives/"
@@ -95,4 +99,3 @@
         }
     }
 }
-
